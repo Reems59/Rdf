@@ -69,3 +69,12 @@ rdfMomentCentreNormalise <- function(im, p, q){
   as.numeric(momentCentre/(momentCentreZero ^(1 + (p+q)/2)))
 }
 
+matriceInertieNormalise <- function (im) {
+  um20 <- rdfMomentCentreNormalise(im, 2, 0)
+  um11 <- rdfMomentCentreNormalise(im, 1, 1)
+  um02 <- rdfMomentCentreNormalise(im, 0, 2)
+  matrix(c(um20, um11, um11, um02), 2, 2)
+}
+axeInertieNormalise <- function (im){
+  eigen (matriceInertieNormalise (im))
+}

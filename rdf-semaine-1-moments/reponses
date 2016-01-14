@@ -62,9 +62,63 @@ $vectors
 [1,]    0   -1
 [2,]    1    0
 
+On observe que les deux valeurs propres des différents carrés sont toujours identifique entre eux lorsqu'il est orienté il est reel et pas entier. Donc un attribut de forme pour le carré pourrait être l'égalité des valeurs propres de la forme. 
+
+ les valeurs normalisées  : 
+> axeInertieNormalise de triangle coté 10
+$values
+[1] 0.10077660 0.09484009
+
+$vectors
+           [,1]       [,2]
+[1,] -0.2038465 -0.9790029
+[2,]  0.9790029 -0.2038465
+
+> axeInertieNormalise Rotation 15deg
+$values
+[1] 0.10033918 0.09483242
+
+$vectors
+           [,1]       [,2]
+[1,] -0.4667712 -0.8843781
+[2,]  0.8843781 -0.4667712
 
 
+> axeInertieNormalise Rotation 45deg
+$values
+[1] 0.10050438 0.09515709
+
+$vectors
+           [,1]       [,2]
+[1,] -0.8082025 -0.5889047
+[2,]  0.5889047 -0.8082025
+
+> axeInertieNormalise Rotation 60deg
+$values
+[1] 0.10154882 0.09336958
+
+ Carre 6 :  0.08101852  /  0.08101852
+Carre 10 :  0.0825  /  0.0825
+Carre 10, 30deg :  0.08411031  /  0.08402441
+Carre 10, 45deg :  0.08543340  /  0.08513074
+Carre 20 :  0.083125  /  0.083125
+
+Rectangle vertical
+$values
+[1] 0.33203125 0.01953125
+
+Rectangle horizontal
+$values
+[1] 0.33203125 0.01953125
+
+Rectangle diagonal
+$values
+[1] 0.38585018 0.01753864
 
 
+Rectangle diagonal lisse
+> axeInertieNormalise(image)
+$values
+[1] 0.33503454 0.02395988
 
 
