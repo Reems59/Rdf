@@ -1,0 +1,15 @@
+Explication premier tp :
+
+  moments d'une forme
+  -  rdfMoments.R
+ Dans ce fichier, il y a des fonctions permettant de calculer un moment d'une forme.
+ rdfSurface va effectuer la somme des valeurs de la matrice passée en parametres, c'est-à-dire tout les 1.
+ rdfMoment va créer le moment d'ordre p q. La somme est décomposé de cette manire: on créé un vecteur x de taille 1 à la taille max des x. On multiplie par p chaque x du vecteur. On fait la même chose avec les y. Ensuite avec les deux vecteurs x et y on créé deux matrices en combinants les vecteurs lignes et les vecteurs colonnes. Puis on les multiplies ensemble avec aussi la matrice im passée en parametres, ce qui nous donne un l'indice du moment à l'odre (p,q).
+
+rdfMomentCentre calcule le moment centre à l'indice (p,q) de la matrice im :
+ la formule est la même que rdfMoment sauf qu'on enleve cx et cy pour chaque vecteur ce qui correspond au barycentre en x et le barycentre en y divisé par la surface de im. Cela permet de calculer un indice independament de la position de l'objet.
+
+L'interet de ce calcul est de faire une multiplication de somme en une seule ligne. On veut minimiser la compléxité du calcul.
+
+
+La matrice d'inertie se calcule à l'aide du tenseur d'inertie. Ici, nous caluclons le tenseur d'inertie à deux dimensions. On créé une matrice à deux dimensionsavec comme valeurs les trois indices des moments centrées d'odres 2, c'est-à-dire, [u20,u11,u11,u02]. Ensuite on calcule les valeurs propres avec la fonction eigne. La valeur la plus faible correspond a l'axe de l'objet qui tourne le mieux et inversement la valeur la plus forte correspond à l'axe ou l'objet tournera le plus difficillement. On observe que les valeurs propres des vecteurs restent les même et que par contre, les vecteurs propres sont dependant de l'orientation des rectangles, ils ont tous des valeurs differentes.
