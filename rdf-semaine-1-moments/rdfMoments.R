@@ -63,7 +63,9 @@ axeInertie <- function (im){
   eigen (matriceInertie (im))
 }
 
-
-
-
+rdfMomentCentreNormalise <- function(im, p, q){
+  momentCentre <- rdfMomentCentre(im,p,q)
+  momentCentreZero <- rdfMomentCentre(im,0,0)
+  as.numeric(momentCentre/(momentCentreZero ^(1 + (p+q)/2)))
+}
 

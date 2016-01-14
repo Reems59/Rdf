@@ -1,15 +1,70 @@
-Explication premier tp :
+﻿Explication premier tp :
 
-  moments d'une forme
-  -  rdfMoments.R
+Moments d’une forme 
+- Code R
+  rdfMoments.R
  Dans ce fichier, il y a des fonctions permettant de calculer un moment d'une forme.
- rdfSurface va effectuer la somme des valeurs de la matrice passée en parametres, c'est-à-dire tout les 1.
- rdfMoment va créer le moment d'ordre p q. La somme est décomposé de cette manire: on créé un vecteur x de taille 1 à la taille max des x. On multiplie par p chaque x du vecteur. On fait la même chose avec les y. Ensuite avec les deux vecteurs x et y on créé deux matrices en combinants les vecteurs lignes et les vecteurs colonnes. Puis on les multiplies ensemble avec aussi la matrice im passée en parametres, ce qui nous donne un l'indice du moment à l'odre (p,q).
+rdfSurface va effectuer la somme des valeurs de la matrice passée en paramètres, c'est-à-dire tout les 1.
+ rdfMoment va créer le moment d'ordre p q. La somme est décomposé de cette manière: on créé un vecteur x de taille 1 à la taille max des x. On multiplie par p chaque x du vecteur. On fait la même chose avec les y. Ensuite avec les deux vecteurs x et y on créé deux matrices en combinant les vecteurs lignes et les vecteurs colonnes. Puis on les multiplies ensemble avec aussi la matrice im passée en paramètres, ce qui nous donne un l'indice du moment à l'odre (p,q).
 
 rdfMomentCentre calcule le moment centre à l'indice (p,q) de la matrice im :
- la formule est la même que rdfMoment sauf qu'on enleve cx et cy pour chaque vecteur ce qui correspond au barycentre en x et le barycentre en y divisé par la surface de im. Cela permet de calculer un indice independament de la position de l'objet.
+ la formule est la même que rdfMoment sauf qu'on enlève cx et cy pour chaque vecteur ce qui correspond au barycentre en x et le barycentre en y divisé par la surface de im. Cela permet de calculer un indice indépendamment de la position de l'objet.
 
-L'interet de ce calcul est de faire une multiplication de somme en une seule ligne. On veut minimiser la compléxité du calcul.
+L'intérêt de ce calcul est de faire une multiplication de somme en une seule ligne. On veut minimiser la complexité du calcul.
+
+Axes principaux d’inertie
 
 
-La matrice d'inertie se calcule à l'aide du tenseur d'inertie. Ici, nous caluclons le tenseur d'inertie à deux dimensions. On créé une matrice à deux dimensionsavec comme valeurs les trois indices des moments centrées d'odres 2, c'est-à-dire, [u20,u11,u11,u02]. Ensuite on calcule les valeurs propres avec la fonction eigne. La valeur la plus faible correspond a l'axe de l'objet qui tourne le mieux et inversement la valeur la plus forte correspond à l'axe ou l'objet tournera le plus difficillement. On observe que les valeurs propres des vecteurs restent les même et que par contre, les vecteurs propres sont dependant de l'orientation des rectangles, ils ont tous des valeurs differentes.
+La matrice d'inertie se calcule à l'aide du tenseur d'inertie. Ici, nous calculons le tenseur d'inertie à deux dimensions. On créé une matrice à deux dimensions avec comme valeurs les trois indices des moments centrées d'ordres 2, c'est-à-dire, [u20,u11,u11,u02]. Ensuite on calcule les valeurs propres avec la fonction eigne. La valeur la plus faible correspond a l'axe de l'objet qui tourne le mieux et inversement la valeur la plus forte correspond à l'axe ou l'objet tournera le plus difficilement. On observe que les valeurs propres des vecteurs restent les même et que par contre, les vecteurs propres sont dépendant de l'orientation des rectangles, ils ont tous des valeurs différentes.
+
+Entre les deux rectangles diagonal, il y a des différences de couleurs de pixels au niveau des bords du rectangle. Le rectangle D lissé contient plus de pixels mi blanc mi noir pour rendre le trait plus lisse, c’est le phénomène d’anticrénelage par rapport à l’autre rectangle diagonal non lissé possédant le phénomène contraire de crénelage.
+On remarque que pour le rectangle diagonal lissé, il y a une augmentation de 10% sur les valeurs propres par rapport au rectangle diagonal non lissé. C’est à cause de l’anticrénelage.
+
+
+Carré côté 6
+$values
+[1] 105 105
+
+$vectors
+     [,1] [,2]
+[1,]    0   -1
+[2,]    1    0
+Rotation 30deg :
+$values
+[1] 843.2815 842.4202
+
+$vectors
+          [,1]       [,2]
+[1,] 0.2975906 -0.9546936
+[2,] 0.9546936  0.2975906
+Carré côté 10 :
+$values
+[1] 825 825
+
+$vectors
+     [,1] [,2]
+[1,]    0   -1
+[2,]    1    0
+Rotation 45deg :
+$values
+[1] 841.5171 838.5359
+
+$vectors
+           [,1]       [,2]
+[1,] -0.7771076  0.6293678
+[2,] -0.6293678 -0.7771076
+Carré côté 20 :
+$values
+[1] 13300 13300
+
+$vectors
+     [,1] [,2]
+[1,]    0   -1
+[2,]    1    0
+
+
+
+
+
+
+
