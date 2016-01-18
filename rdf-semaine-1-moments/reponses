@@ -62,8 +62,8 @@ $vectors
 [1,]    0   -1
 [2,]    1    0
 
-On observe que les deux valeurs propres des différents carrés sont toujours identifique entre eux lorsqu'il est orienté il est reel et pas entier. Donc un attribut de forme pour le carré pourrait être l'égalité des valeurs propres de la forme. 
-
+On observe que les deux valeurs propres des différents carrés sont toujours identique entre eux lorsqu'il est orienté il est reel et pas entier. Donc un attribut de forme pour le carré pourrait être l'égalité des valeurs propres de la forme. 
+En normalisant les moments, pour les differents carrés de taille differents on observe que les valeurs sont quasiment identique, c'est gràce à la normalisation des valeurs propres qui les rendent indépendant de l'echelle.
  les valeurs normalisées  : 
 > axeInertieNormalise de triangle coté 10
 $values
@@ -96,7 +96,7 @@ $vectors
 > axeInertieNormalise Rotation 60deg
 $values
 [1] 0.10154882 0.09336958
-
+ On observe que les valeurs sont quasiment identique à une difference de 0.01 environ. 
  Carre 6 :  0.08101852  /  0.08101852
 Carre 10 :  0.0825  /  0.0825
 Carre 10, 30deg :  0.08411031  /  0.08402441
