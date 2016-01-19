@@ -78,3 +78,26 @@ matriceInertieNormalise <- function (im) {
 axeInertieNormalise <- function (im){
   eigen (matriceInertieNormalise (im))
 }
+rdfMomentsInvariants <- function(im){
+  phi1 <- rdfMomentCentreNormalise(im, 2, 0) +
+    rdfMomentCentreNormalise(im, 0, 2)
+  phi2 <- (rdfMomentCentreNormalise(im, 2, 0) - rdfMomentCentreNormalise(im, 0, 2))^2 +
+    (2 * rdfMomentCentreNormalise(im, 1, 1))^2
+  phi3 <- (rdfMomentCentreNormalise(im, 3, 0) - 3*rdfMomentCentreNormalise(im, 1, 2))^2 +
+    ((3 * rdfMomentCentreNormalise(im, 2, 1)) - rdfMomentCentreNormalise(im, 0, 3))^2
+  phi4 <- (rdfMomentCentreNormalise(im, 3, 0) +
+             rdfMomentCentreNormalise(im, 1, 2))^2 +
+    (rdfMomentCentreNormalise(im, 2, 1) + rdfMomentCentreNormalise(im, 0, 3))^2
+  phi5 <- (rdfMomentCentreNormalise(im, 3, 0) - 3*rdfMomentCentreNormalise(im, 1, 2)) * (rdfMomentCentreNormalise(im, 3, 0) + rdfMomentCentreNormalise(im, 1, 2)) * ((rdfMomentCentreNormalise(im, 3, 0) + rdfMomentCentreNormalise(im, 1, 2))^2 - 3*(rdfMomentCentreNormalise(im, 2, 1) + rdfMomentCentreNormalise(im, 0, 3))^2) + (3*rdfMomentCentreNormalise(im, 2, 1) - rdfMomentCentreNormalise(im, 0, 3)) * (rdfMomentCentreNormalise(im, 2, 1) + rdfMomentCentreNormalise(im, 0, 3)) * (3*(rdfMomentCentreNormalise(im, 3, 0) + rdfMomentCentreNormalise(im, 1, 2))^2 - (rdfMomentCentreNormalise(im, 2, 1) + rdfMomentCentreNormalise(im, 0, 3))^2)
+  print("Calculs de moments invariants")
+  print("1 :")
+  print(phi1)
+  print("2 : ")
+  print(phi2)
+  print("3 : ")
+  print(phi3)
+  print("4 : ")
+  print(phi4)
+  print("5 : ")
+  print(phi5)
+  }
