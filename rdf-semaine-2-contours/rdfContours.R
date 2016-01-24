@@ -56,3 +56,9 @@ rdfDistances <- function (cont) {
   # Calculer les distances: A MODIFIER !
   rep (0, length (cont))
 }
+
+rdfAnnuleDescFourier <- function (desc, ratio) {
+  tmp = (length(desc) * ratio)%/%1
+  desc[1:tmp]
+}
+

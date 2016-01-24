@@ -30,8 +30,14 @@ plot (cont, main = nom, type = "o", asp = 1, col = "red",
       ylim = rev (range (Im (cont))))
 fourier = fft(cont, FALSE)/length(cont)
 
-con4 = cont[c(TRUE, FALSE, FALSE, FALSE)]
-con8 = con4[c(TRUE,FALSE)]
-lines(con4,type = "o", col="blue")
-lines(con8, type = "o", col= "green")
+#on modifie fourier[1] pour modifier le Z0 et ainsi le centre de gravité
+#fourier[1]= 3+3i
+
+#con4 = cont[c(TRUE, FALSE, FALSE, FALSE)]
+#con8 = con4[c(TRUE,FALSE)]
+#lines(con4,type = "o", col="blue")
+#lines(con8, type = "o", col= "green")
+fourier03 = rdfAnnuleDescFourier(fourier, 0.10)
 lines(fft(fourier, TRUE), type = "o", col= "yellow")
+lines(fft(fourier03, TRUE), type = "o", col= "blue")
+lines(fft(rdfAnnuleDescFourier(fourier, 0.5), TRUE), type = "o", col= "green")
