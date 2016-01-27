@@ -15,7 +15,15 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# -----------------------------------------------------------------------
+# # Chargement d'une image en niveaux de gris
+rdfReadGreyImage <- function (nom) {
+  image <- readImage (nom)
+  if (length (dim (image)) == 2) {
+    image
+  } else {
+    channel (image, 'red')
+  }
+}
 
 # Lit un contour dans un fichier texte
 rdfChargeFichierContour <- function (nom) {
@@ -54,11 +62,17 @@ rdfDistances <- function (cont) {
   debut = head (cont, 1)
   fin = tail (cont, 1)
   # Calculer les distances: A MODIFIER !
-  rep (0, length (cont))
+  abs(Im((cont - debut) * Conj(fin - debut))) / Mod(fin - debut)
 }
-
 rdfAnnuleDescFourier <- function (desc, ratio) {
-  tmp = (length(desc) * ratio)%/%1
-  desc[1:tmp]
+  tmp <- (length(desc) * ratio)%/%1
+  tmp <- tmp%/%2
+  mil <- length(desc)%/%2
+  bord1 = mil-tmp
+  bord2 = mil+tmp
+  print(bord1)
+  print(bord2)
+  desc[bord1:bord2]<-0
+  desc
 }
 
