@@ -22,13 +22,13 @@ library ("EBImage")
 source ("rdfContours.R")
 
 # Chargement d'un contour
-#nom<- "rdf-carre-80.txt"
-nom <- "rdf-carre-20.png"
+#nom<- "rdf-cercle-80.txt"
+nom <- "rdf-patate.png"
 #cont <- rdfChargeFichierContour (nom)
 cont <- rdfContour(rdfReadGreyImage(nom))
 
 # Afficher le contour
-plot (cont, main = nom, type = "o", asp = 1, col = "red",
+plot (cont, main = nom, type = "o", asp = 1, col = "black",
       ylim = rev (range (Im (cont))))
 fourier = fft(cont, FALSE)/length(cont)
 
@@ -39,9 +39,9 @@ fourier = fft(cont, FALSE)/length(cont)
 #con8 = con4[c(TRUE,FALSE)]
 #lines(con4,type = "o", col="blue")
 #lines(con8, type = "o", col= "green")
-fourier03 = rdfAnnuleDescFourier(fourier, 0.80)
-lines(fft(fourier, TRUE), type = "o", col= "yellow")
-lines(fft(fourier03, TRUE), type = "o", col= "blue")
-lines(fft(rdfAnnuleDescFourier(fourier, 0.5), TRUE), type = "o", col= "green")
+#fourier03 = rdfAnnuleDescFourier(fourier, 0.75)
+#lines(fft(fourier, TRUE), type = "o", col= "red")
+#lines(fft(fourier03, TRUE), type = "o", col= "red")
+#lines(fft(rdfAnnuleDescFourier(fourier, 0.5), TRUE), type = "o", col= "blue")
 #lines(rdfAlgorithmeCorde(cont, 0.5), type = "o", col= "green")
-#lines(rdfAlgorithmeCorde(cont, 1), type = "o", col= "blue")
+#lines(rdfAlgorithmeCorde(cont, 2), type = "o", col= "blue")
