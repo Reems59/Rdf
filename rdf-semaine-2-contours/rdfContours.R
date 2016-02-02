@@ -34,6 +34,7 @@ rdfChargeFichierContour <- function (nom) {
 # Contour d'une forme contenue dans une image
 rdfContour <- function (image) {
   oc <- ocontour (image)
+  print(oc)
   complex (real = oc[[1]][,1], imaginary = oc[[1]][,2])
 }
 
