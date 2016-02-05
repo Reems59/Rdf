@@ -62,7 +62,7 @@ rdfDistances <- function (cont) {
   # Points extremes
   debut = head (cont, 1)
   fin = tail (cont, 1)
-  # Calculer les distances: A MODIFIER !
+  # Calculer les distances: abs = valeur absolu  conj = conjugué mod = module
   abs(Im((cont - debut) * Conj(fin - debut))) / Mod(fin - debut)
 }
 rdfAnnuleDescFourier <- function (desc, ratio) {
