@@ -30,18 +30,24 @@ imageBinaire <- rdfReadGreyImage (nomBinaire)
 
 # Calcul et affichage de son histogramme
 nbins <- 1024
-h <- hist (as.vector (image), breaks = seq (0, 1, 1 / nbins))
+#h <- hist (as.vector (image), breaks = seq (0, 1, 1 / nbins))
 
 # Segmentation par binarisation
-seuil <- 0.47
-binaire <- 1*(image - seuil) >= 0
+#seuil <- 0.47
+#binaire <- 1*(image - seuil) >= 0
+#pourcentageErreur <- (sum(imageBinaire != binaire) / length(binaire)) *100
 
+# segmentation texture
+texture <- rdfTextureEcartType(image, 2)
+h <- hist (as.vector (texture), breaks = seq (0, 1, 1 / nbins))
+seuil <- 0.41
+binaire <- -1*(texture - seuil) >= 0
 pourcentageErreur <- (sum(imageBinaire != binaire) / length(binaire)) *100
 
 print(pourcentageErreur)
 
 # Affichage des deux images
 if (interactive ()) {
-  display (image, nom)
+  #display (texture, nom)
   display (binaire, "image binaire")
 }
