@@ -22,7 +22,7 @@ library ("EBImage")
 source ("rdfSegmentation.R")
 
 # Chargement d'une image
-nom <- "rdf-2-classes-texture-1.png"
+nom <- "rdf-2-classes-texture-4.png"
 image <- rdfReadGreyImage (nom)
 
 nomBinaire <- "rdf-masque-ronds.png"
@@ -46,7 +46,7 @@ nbins <- 1024
 
 # histogramme conjoint
 texture <- rdfTextureEcartType(image, 2)
-h <- rdfCalculeHistogramme2D(texture, 256, image, 256);
+h <- rdfCalculeHistogramme2D(image, 256, texture, 256);
 #print(pourcentageErreur)
 
 # Affichage des deux images
