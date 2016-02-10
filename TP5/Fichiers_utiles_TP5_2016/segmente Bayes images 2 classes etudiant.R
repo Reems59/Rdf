@@ -23,7 +23,7 @@ source ("rdfSegmentation.R")
 
 # Chargement de l'image
 #nom <- "rdf-2-classes-texture-0.png"
-nom <- "2classes_100_100_8bits.png"
+nom <- "2classes_100_100_8bits_2016.png"
 image <- rdfReadGreyImage (nom)
 
 # Calcul et affichage de son histogramme
@@ -31,20 +31,25 @@ nbins <- 256
 h <- hist (as.vector (image), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
 
 # Segmentation par binarisation 0.3
-seuil <- 0.35
-binaire30 <- (image - seuil) >= 0
+seuil <- 0.5
+binaire50 <- (image - seuil) >= 0
+seuil <- 0.55
+binaire55 <- (image - seuil) >= 0
+seuil <- 0.6
+binaire60 <- (image - seuil) >= 0
+
 
 
 # Affichage des deux images
-#if (interactive ()) {
-#  display (binaire30, "image binaire 0.3")
-#  display (binaire35, "image binaire 0.35")
-#  display (binaire40, "image binaire 0.4")
-#}
+if (interactive ()) {
+  #display (binaire50, "image binaire 0.5")
+  #display (binaire55, "image binaire 0.55")
+  display (binaire60, "image binaire 0.60")
+}
 
 # Chargement de l'image omega1
 
-nom <- "2classes_100_100_8bits_omega1.png"
+nom <- "2classes_100_100_8bits_omega1_2016.png"
 omega1 <- rdfReadGreyImage (nom)
 
 # Calcul et affichage de son histogramme
@@ -58,12 +63,27 @@ h1 <- hist (as.vector (omega1), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
 
 p_omega1= sum(h1$counts[0:255])/ sum(h$counts[0:255])
 # a completer pour p_omega2
+nom <- "2classes_100_100_8bits_omega2_2016.png"
+omega2 <- rdfReadGreyImage (nom)
+
+# Calcul et affichage de son histogramme
+nbins <- 256
+h2 <- hist (as.vector (omega2), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
+
+# Chargement de l'image omega2
+# Calcul et affichage de son histogramme
+# a completer pour h2
+#  Calcul des probas a priori des classes
+
+p_omega2= sum(h2$counts[0:255])/ sum(h$counts[0:255])
 # 
 #  Calcul des probas conditionnelles
 h$counts[90]
 h1$counts[90]
+h2$counts[90]
 h$density[90]
 h1$density[90]
+h2$density[90]
 
 
 #  pour le seuil X calcul de l'erreur d'assignation
@@ -81,12 +101,15 @@ for (X in 1:255)
     somme1[X+1]=somme1[X+1]*p_omega1
 #\sum_{\mathbf{X} \in \hat{\omega_1}} P(\mathbf{X}  / \omega_2). P(\omega_2)  
 # A complèter pour somme2  
+  somme2[X+1]=sum(h2$density[(X+1):256])/sum(h2$density[1:256])
+  somme2[X+1]=somme2[X+1]*p_omega2
+
   erreur[X+1] = somme1[X+1] + somme2[X+1]
 # seuil corrrespondant à l'erreur minimale
   if (erreur[X+1] < minimum_erreur ) seuil_minimum_erreur = X
   if (erreur[X+1] < minimum_erreur ) minimum_erreur = erreur[X+1]
   }
-
+View(h$counts[142]/sum(h$counts[0:255]))
 seuil = seuil_minimum_erreur/255 
 binaire_Bayes <- (image - seuil) >= 0
 display (binaire_Bayes, "image binaire Bayes")

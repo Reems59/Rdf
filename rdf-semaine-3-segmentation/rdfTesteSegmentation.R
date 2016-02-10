@@ -22,20 +22,20 @@ library ("EBImage")
 source ("rdfSegmentation.R")
 
 # Chargement d'une image
-nom <- "rdf-2-classes-texture-4.png"
+nom <- "2classes_100_100_8bits_2016.png"
 image <- rdfReadGreyImage (nom)
 
-nomBinaire <- "rdf-masque-ronds.png"
-imageBinaire <- rdfReadGreyImage (nomBinaire)
+#nomBinaire <- "rdf-masque-ronds.png"
+#imageBinaire <- rdfReadGreyImage (nomBinaire)
 
 # Calcul et affichage de son histogramme
 nbins <- 1024
 #h <- hist (as.vector (image), breaks = seq (0, 1, 1 / nbins))
 
 # Segmentation par binarisation
-#seuil <- 0.47
-#binaire <- 1*(image - seuil) >= 0
-#pourcentageErreur <- (sum(imageBinaire != binaire) / length(binaire)) *100
+seuil <- 0.47
+binaire <- 1*(image - seuil) >= 0
+pourcentageErreur <- (sum(image != binaire) / length(binaire)) *100
 
 # segmentation texture
 #texture <- rdfTextureEcartType(image, 2)
@@ -45,13 +45,13 @@ nbins <- 1024
 #pourcentageErreur <- (sum(imageBinaire != binaire) / length(binaire)) *100
 
 # histogramme conjoint
-texture <- rdfTextureEcartType(image, 2)
-h <- rdfCalculeHistogramme2D(image, 256, texture, 256);
+#texture <- rdfTextureEcartType(image, 2)
+#h <- rdfCalculeHistogramme2D(image, 256, texture, 256);
 #print(pourcentageErreur)
 
 # Affichage des deux images
-if (interactive ()) {
+#if (interactive ()) {
   #display (texture, nom)
   #display (binaire, "image binaire")
-  display(h, "histogramme2D");
-}
+#  display(h, "histogramme2D");
+#}
