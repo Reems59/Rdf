@@ -23,14 +23,15 @@ source ("rdfSegmentation.R")
 
 # Chargement de l'image
 #nom <- "rdf-2-classes-texture-0.png"
-#nom <- "2classes_100_100_8bits_2016.png"
-nom <- "rdf-chiffre-0-8bits.png"
+nom <- "2classes_100_100_8bits_2016.png"
+#nom <- "rdf-chiffre-0-8bits.png"
 image <- rdfReadGreyImage (nom)
 
 # Calcul et affichage de son histogramme
 nbins <- 256
 h <- hist (as.vector (image), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
 
+# ----- QUESTION 1 -----
 # Segmentation par binarisation 0.3
 seuil <- 0.5
 binaire50 <- (image - seuil) >= 0
@@ -48,47 +49,38 @@ if (interactive ()) {
   #display (binaire60, "image binaire 0.60")
 }
 
-# Chargement de l'image omega1
+# ----- FIN QUESTION 1 -----
 
-#nom <- "2classes_100_100_8bits_omega1_2016.png"
-nom <- "rdf-chiffre-0-8bits_omega1.png"
+
+# ----- QUESTION 2 -----
+# Chargement de l'image omega1
+nom <- "2classes_100_100_8bits_omega1_2016.png"
+#nom <- "rdf-chiffre-0-8bits_omega1.png"
 omega1 <- rdfReadGreyImage (nom)
 
 # Calcul et affichage de son histogramme
 nbins <- 256
 h1 <- hist (as.vector (omega1), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
-
-# Chargement de l'image omega2
-# Calcul et affichage de son histogramme
-# a completer pour h2
-#  Calcul des probas a priori des classes
-
 p_omega1= sum(h1$counts[0:255])/ sum(h$counts[0:255])
-# a completer pour p_omega2
-#nom <- "2classes_100_100_8bits_omega2_2016.png"
-nom <- "rdf-chiffre-0-8bits_omega2.png"
-omega2 <- rdfReadGreyImage (nom)
 
-# Calcul et affichage de son histogramme
+#h2 : 
+nom <- "2classes_100_100_8bits_omega2_2016.png"
+#nom <- "rdf-chiffre-0-8bits_omega2.png"
+omega2 <- rdfReadGreyImage (nom)
 nbins <- 256
 h2 <- hist (as.vector (omega2), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
-
-# Chargement de l'image omega2
-# Calcul et affichage de son histogramme
-# a completer pour h2
-#  Calcul des probas a priori des classes
-
 p_omega2= sum(h2$counts[0:255])/ sum(h$counts[0:255])
-# 
-#  Calcul des probas conditionnelles
-h$counts[90]
-h1$counts[90]
-h2$counts[90]
-h$density[90]
-h1$density[90]
-h2$density[90]
+
+# ----- FIN QUESTION 2 -----
+
+# ----- QUESTION 3 -----
+pi141 = h$counts[142]/sum(h$counts[0:255])
+pomega1141 = h1$counts[142]/sum(h$counts[0:255])
+pomega2141 = h2$counts[142]/sum(h$counts[0:255])
+# ----- FIN QUESTION 3 -----
 
 
+# ----- QUESTION 4 -----
 #  pour le seuil X calcul de l'erreur d'assignation
 somme1 = 0:255
 somme2 = 0:255
@@ -112,13 +104,10 @@ for (X in 1:255)
   if (erreur[X+1] < minimum_erreur ) minimum_erreur = erreur[X+1]
   }
 
-pi141 = h$counts[142]/sum(h$counts[0:255])
-pomega1141 = h1$counts[142]/sum(h$counts[0:255])
-pomega2141 = h2$counts[142]/sum(h$counts[0:255])
-
 
 seuil = seuil_minimum_erreur/255 
 nom <- "rdf-chiffre-1-8bits.png"
 image <- rdfReadGreyImage (nom)
 binaire_Bayes <- (image - seuil) >= 0
 display (binaire_Bayes, "image binaire Bayes")
+# ----- FIN QUESTION 4 -----
