@@ -17,14 +17,17 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # -----------------------------------------------------------------------
 
+#TP réalisé par Rémi Kroll et Dimitri Charneux.
+
+
 # Chargement des fonctions externes
 library ("EBImage")
 source ("rdfSegmentation.R")
 
-# Chargement de l'image
+# Chargement de l'image (remplacer le path pour l'image souhaitée)
 #nom <- "rdf-2-classes-texture-0.png"
-nom <- "2classes_100_100_8bits_2016.png"
-#nom <- "rdf-chiffre-0-8bits.png"
+#nom <- "2classes_100_100_8bits_2016.png"
+nom <- "rdf-chiffre-0-8bits.png"
 image <- rdfReadGreyImage (nom)
 
 # Calcul et affichage de son histogramme
@@ -53,9 +56,9 @@ if (interactive ()) {
 
 
 # ----- QUESTION 2 -----
-# Chargement de l'image omega1
-nom <- "2classes_100_100_8bits_omega1_2016.png"
-#nom <- "rdf-chiffre-0-8bits_omega1.png"
+# Chargement de l'image omega1 (remplacer le path pour l'image souhaitée)
+#nom <- "2classes_100_100_8bits_omega1_2016.png"
+nom <- "rdf-chiffre-0-8bits_omega1.png"
 omega1 <- rdfReadGreyImage (nom)
 
 # Calcul et affichage de son histogramme
@@ -63,9 +66,9 @@ nbins <- 256
 h1 <- hist (as.vector (omega1), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
 p_omega1= sum(h1$counts[0:255])/ sum(h$counts[0:255])
 
-#h2 : 
-nom <- "2classes_100_100_8bits_omega2_2016.png"
-#nom <- "rdf-chiffre-0-8bits_omega2.png"
+#h2 : (remplacer le path pour l'image souhaitée)
+#nom <- "2classes_100_100_8bits_omega2_2016.png"
+nom <- "rdf-chiffre-0-8bits_omega2.png"
 omega2 <- rdfReadGreyImage (nom)
 nbins <- 256
 h2 <- hist (as.vector (omega2), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
