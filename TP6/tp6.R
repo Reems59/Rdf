@@ -94,7 +94,58 @@ shape[assigne_test$class==3]=2 ;
 # Affichage avec code couleur et forme adaptees
 plot(x_test,col=couleur,pch=shape,xlab = "X1", ylab = "X2");
 
+#lignes de décision
+zp<-Zp$post[,3]-pmax(Zp$post[,2],Zp$post[,1])
+contour(xp1,xp2,matrix(zp,50),add=TRUE,levels=0,drawlabels=FALSE)
+
+# classe 2 versus 3 et 1
+zp<-Zp$post[,2]-pmax(Zp$post[,3],Zp$post[,1])
+contour(xp1,xp2,matrix(zp,50),add=TRUE,levels=0,drawlabels=FALSE)
 
 
+# -----1.5------
+library("MASS")
+library("lattice")
+# Grille d'estimation de la densite de probabilite en 50 intervalles selon 1er attribut
+xp1<-seq(min(x_app[,1]),max(x_app[,1]),length=50)
+# Grille d'estimation de la densite de probabilite en 50 intervalles selon 2eme attribut
+xp2<-seq(min(x_app[,2]),max(x_app[,2]),length=50)
+grille<-expand.grid(x1=xp1,x2=xp2)
+x_app.qda<-qda(x_app,classe_app)
+# Estimation des densites de probabilites a posteriori dans Zp
+grille=cbind(grille[,1],grille[,2])
+Zp<-predict(x_app.qda,grille)
+# classe 3 versus 2 et 1
+zp<-Zp$post[,3]-pmax(Zp$post[,2],Zp$post[,1])
+contour(xp1,xp2,matrix(zp,50),add=TRUE,levels=0,drawlabels=FALSE)
+
+# classe 2 versus 3 et 1
+zp<-Zp$post[,2]-pmax(Zp$post[,3],Zp$post[,1])
+contour(xp1,xp2,matrix(zp,50),add=TRUE,levels=0,drawlabels=FALSE)
 
 
+assigne_test<-predict(x_app.qda, newdata=x_test)
+# Estimation des taux de bonnes classifications
+table_classification_test <-table(classe_test, assigne_test$class)
+# table of correct class vs. classification
+diag(prop.table(table_classification_test, 1))
+# total percent correct
+taux_bonne_classif_test <-sum(diag(prop.table(table_classification_test)))
+
+# Creation du vecteur contenant le code de la forme des donnees test assignees aux classes - code initialise a 1
+shape<-rep(1,n_test) ;
+# forme des donnees assignees a la classe 2
+#1 = rond, 2 = triangle et 3 = croix
+shape[assigne_test$class==1]=1 ;
+shape[assigne_test$class==2]=3 ;
+shape[assigne_test$class==3]=2 ;
+# Affichage avec code couleur et forme adaptees
+plot(x_test,col=couleur,pch=shape,xlab = "X1", ylab = "X2");
+
+#lignes de décision
+zp<-Zp$post[,3]-pmax(Zp$post[,2],Zp$post[,1])
+contour(xp1,xp2,matrix(zp,50),add=TRUE,levels=0,drawlabels=FALSE)
+
+# classe 2 versus 3 et 1
+zp<-Zp$post[,2]-pmax(Zp$post[,3],Zp$post[,1])
+contour(xp1,xp2,matrix(zp,50),add=TRUE,levels=0,drawlabels=FALSE)

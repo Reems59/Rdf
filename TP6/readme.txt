@@ -29,12 +29,15 @@ La qualité de discrimination des deux lignes de décisions nous semble plutôt 
 
 1.4/
 
-Le taux de bonne classification des de 84%
+Le taux de bonne classification des données est de 84%.
 
 Les taux de classifications des classes sont les suivants : 0.067 pour S1, 0.28 pour S2 et 0.49 pour S3. S3 est la classe dont les observations ont été le mieux classés. 
 
 On retouve graphiquement les pourcentage obtenues précédemment.
 
 
+1.5/
+
+Le taux de bonne classification des deonnées est de 90.7%.
 
 
