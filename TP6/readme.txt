@@ -1,4 +1,5 @@
 1.1/
+
 Les populations des trois classes ne sont pas equiprobables. la probabilité de p1 = 0.2, p2 = 0.3 et p3 = 0.5.
 
 
@@ -24,7 +25,7 @@ Les attributs ne sont pas indépendants car dans la matrice, les valeurs (1,2) e
 
 1.3/
 
-La qualité de discrimination des deux lignes de décisions nous semble plutôt bonne.
+La qualité de discrimination des deux lignes de décisions nous semble plutôt bonne. En effet, seul quelques points ne sont pas placés dans la bonne zone.
 
 
 1.4/
@@ -38,6 +39,6 @@ On retouve graphiquement les pourcentage obtenues précédemment.
 
 1.5/
 
-Le taux de bonne classification des deonnées est de 90.7%.
+Le taux de bonne classification des données est de 90.7%.
 
 
