@@ -1,4 +1,4 @@
-
+#-- Kroll Rémi Charneux Dimitri
 # -----1.1------
 x = load(file='simul-2016.Rdata');
 couleur<-rep('black',n_app)
