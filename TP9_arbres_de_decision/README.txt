@@ -23,5 +23,9 @@ Variante d'un jeu du pendu
 
 1. log2(n) >= p
 
-2. Ca sort un tableau qui convertit chaque lettres en entier et qui renvoit la liste des entiers.
+3. Ca sort un tableau qui convertit chaque lettres en entier et qui renvoit la liste des entiers.
 mat donne une matrice qui nous indique pour chaque mot les lettres presentes dans ce mot.
+
+4. La lettre la plus représentée est le e.
+
+6. Il doit rechercher la lettre la plus représentée dans le tableau de mot.
