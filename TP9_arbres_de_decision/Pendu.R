@@ -53,10 +53,8 @@ sousEnsembleAvec <- function(matrice, lettre){
     }
   }
   if(cpt == 0){ 
-    cat("perdu !")
     newMat = matrix(rep(0,26*0),nrow=26, ncol=0);
   } else {
-    cat("pas perdu !", cpt, "\n")
     newMat = matrix(rep(0,26*cpt),nrow=26, ncol=cpt);
     for(i in 1:cpt){
       newMat[,i] = tmp[,i]
@@ -76,10 +74,8 @@ sousEnsembleSans <- function(mat, lettre){
     }
   }
   if(cpt == 0){ 
-    cat("perdu !")
     newMat = matrix(rep(0,26*0),nrow=26, ncol=0);
   } else {
-    cat("pas perdu !", cpt, "\n")
     newMat = matrix(rep(0,26*cpt),nrow=26, ncol=cpt);
     for(i in 1:cpt){
       newMat[,i] = tmp[,i]
@@ -132,6 +128,29 @@ jouer <- function(){
   } else {
     cat("mot non trouvé")
   }
-  
-  
+}
+
+lancementArbre <- function(){
+  arbreDeDecision(mat, c(), 1, "")
+}
+
+arbreDeDecision <- function(matrice, lettreDemandeDecision, cptArbreDecision, texte){
+  if(length(matrice[1,]) == 1){
+    mot <-  trouveLeMot(matrice)
+    cat(texte, mot, "\n")
+  } else if(length(matrice[1,]) > 1){
+    ent <-  entropie(mat)
+    for(var in lettreDemandeDecision){
+      ent[var] = 0
+    }
+    
+    lettre <-  which.max(ent)
+    lettreDemandeDecision[cptArbreDecision] = lettre
+    tmp <- cptArbreDecision
+    cptArbreDecision <-  cptArbreDecision +1
+    texteTmp <- paste(texte, " ,avec", int2str(lettre))
+    arbreDeDecision(sousEnsembleAvec(matrice, lettre), lettreDemandeDecision, cptArbreDecision, texteTmp)
+    texteTmp <- paste(texte, " ,sans", int2str(lettre))
+    arbreDeDecision(sousEnsembleSans(matrice, lettre), lettreDemandeDecision, cptArbreDecision, texteTmp)
+  }
 }
