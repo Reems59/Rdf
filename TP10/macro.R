@@ -99,7 +99,7 @@ createArbre <- function(stackedFaces, booleans, etiquettes){
 
 createSousArbre <- function(stackedFaces, etiquettes){
   nbTotal = length(stackedFaces[1,1,])
-  booleans = array(0, dim = c(1,400))
+  booleans = array(0, dim = c(1,nbTotal))
   cat("sous arbre \n")
   entropies1 = entropie(stackedFaces, etiquettes, booleans, 0)
   
@@ -122,7 +122,7 @@ createSousArbre <- function(stackedFaces, etiquettes){
     classRatio[2,i] = classCount[2, i]/10
   }
   
-  createArbre(stackedFaces, booleans, etiquettes)
+  #createArbre(stackedFaces, booleans, etiquettes)
 }
 
 
@@ -144,9 +144,9 @@ for(i in 1:400){
   
 }
 
-booleansT = array(0, dim = c(1,400))
+booleanT = array(0, dim = c(1,400))
 
-entropies1T = entropie(stackedFacesT, etiquettesT, booleansT, 0)
+entropies1T = entropie(stackedFacesT, etiquettesT, booleanT, 0)
 #entropies2 = entropie(stackedFaces, etiquettes, booleans, 1)
 
 entropieMaxT = which(entropies1T == max(entropies1T), arr.ind=TRUE)
@@ -172,7 +172,7 @@ for(i in 1:40){
   
 }
 
-createArbre(stackedFacesT, booleansT, etiquettesT)
+createArbre(stackedFacesT, booleanT, etiquettesT)
 
 
 
