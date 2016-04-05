@@ -23,28 +23,22 @@ for(i in 0:19){
 }
 #il faut calculer l'entropie pour chaque pixel de chacunes des 400 images.
 entropies = array(0, dim=c(40,40,33))
+probabilite = array(0, dim=c(40,40,33))
 for(x in 1:40){
     for(i in 1:40){
       for(j in 1:33){
-        cat("x =", x)
-        proba = (sum(stackedFaces[i,j,1+(x-1)*10:x*10]) / 10)
+        proba = (sum(stackedFaces[i,j,(1+(x-1)*10):(x*10)]) / 10)
+        probabilite[x, i, j] = proba
         probaInv = 1- proba
         entropies[x, i, j] = - (log2(proba^proba) + log2(probaInv^probaInv))
       }
     }
 }
-
-entropieMax = which.max(entropies)
-entX = entropieMax%%40
-if(entX == 0){
-  entX = 1
-  entY = entropiesMax / 40
-}
-entY = (entropieMax / 40 )+1
-#View(which(entropies == max(entropies), arr.ind=TRUE))
+entropieMax = which(entropies == max(entropies), arr.ind=TRUE)
+View(which(entropies == max(entropies), arr.ind=TRUE))
 boolean <- c()
-for(i in 1:400){
-  if(stackedFaces[entX, entY, i] == 0){
+for(i in 1:40){
+  if(probabilite[i, entropieMax[1,2], entropieMax[1,3]] < probabilite[entropieMax[1,1], entropieMax[1,2], entropieMax[1,3]]){
     boolean[i] = 0
   } else {
     boolean[i] = 1
