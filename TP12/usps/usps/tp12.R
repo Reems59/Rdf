@@ -6,3 +6,6 @@ for(i in 1:11000){
   
   tabFreeman[[i]] = freeman(uspsData[[1]][,,i])
 }
+
+
+
