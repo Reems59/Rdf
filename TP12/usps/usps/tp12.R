@@ -7,7 +7,7 @@ for(i in 1:11000){
 }
 
 list = list()
-nbdonne_apprentissage = 7
+nbdonne_apprentissage = 50
 nbdonne_test = 3
 listdonne = array(0, dim=10)
 cpt =1
@@ -23,8 +23,8 @@ for(i in 1:10){
   }
   listdonne = array(0, dim= 10)
 }
-
-
+nbClasse = knn(50, list, 10, 50, tabFreeman[1])
+cat('Valeur trouvée : ', nbclasse, '. Valeur réelle : 1')
 
 
 
@@ -33,6 +33,13 @@ for(i in 1:10){
 levenshtein <- function( x, y ) {
   m = length(x)
   n = length(y)
+  
+  if(m == 0){
+    return (n)
+  }
+  if(n == 0){
+    return (m)
+  }
   mat <- matrix(0 , nrow=m+1, ncol=n+1)
   
   for( i in 1:(m+1)){
