@@ -93,15 +93,18 @@ createArbre <- function(stackedFaces, booleans, etiquettes){
   }
   
   cat("un tour !! \n")
-  createSousArbre(stackedFaces1, etiquettes1)
-  createSousArbre(stackedFaces2, etiquettes2)
+  entropie1 = createSousArbre(stackedFaces1, etiquettes1)
+  
+  entropie2 = createSousArbre(stackedFaces2, etiquettes2)
+  
+  
 }
 
 createSousArbre <- function(stackedFaces, etiquettes){
   nbTotal = length(stackedFaces[1,1,])
   booleans = array(0, dim = c(1,nbTotal))
   cat("sous arbre \n")
-  entropies1 = entropie(stackedFaces, etiquettes, booleans, 0)
+  return (entropies1 = entropie(stackedFaces, etiquettes, booleans, 0))
   
   entropieMax = which(entropies1 == max(entropies1), arr.ind=TRUE)
   boolean <- c()
